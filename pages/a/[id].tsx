@@ -5,6 +5,10 @@ import SEO from 'components/Seo';
 import { Event } from 'types/Types';
 import { formatDate, urlEncode } from 'utils';
 
+export const config = {
+  unstable_runtimeJS: false,
+};
+
 export type EventProps = {
   event: Event;
 };

@@ -4,6 +4,10 @@ import Redirect from 'components/Redirect';
 import SEO from 'components/Seo';
 import { Page } from 'types/Types';
 
+export const config = {
+  unstable_runtimeJS: false,
+};
+
 export type PagesProps = {
   page: Page;
 };

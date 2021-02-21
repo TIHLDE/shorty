@@ -1,4 +1,5 @@
-import { useEffect, ReactNode } from 'react';
+import { ReactNode } from 'react';
+import Head from 'next/head';
 
 export type RedirectProps = {
   children?: ReactNode;
@@ -6,8 +7,16 @@ export type RedirectProps = {
 };
 
 export default function Redirect({ children, path = '' }: RedirectProps) {
-  useEffect(() => {
-    window.location.replace(`https://tihlde.org/${path}`);
-  }, []);
-  return <>{children}</>;
+  const link = `https://tihlde.org/${path}`;
+  return (
+    <>
+      <Head>
+        <script dangerouslySetInnerHTML={{ __html: `window.location.replace("${link}");` }} />
+      </Head>
+      {children}
+      <p>
+        Hvis du ikke ble sendte til siden automatisk kan du klikke her: <a href={link}>{link}</a>
+      </p>
+    </>
+  );
 }

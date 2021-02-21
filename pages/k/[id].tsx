@@ -5,6 +5,10 @@ import SEO from 'components/Seo';
 import { JobPost } from 'types/Types';
 import { urlEncode } from 'utils';
 
+export const config = {
+  unstable_runtimeJS: false,
+};
+
 export type JobPostProps = {
   jobpost: JobPost;
 };
