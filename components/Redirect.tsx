@@ -15,7 +15,7 @@ export default function Redirect({ children, path = '' }: RedirectProps) {
       </Head>
       {children}
       <p>
-        Hvis du ikke ble sendte til siden automatisk kan du klikke her: <a href={link}>{link}</a>
+        Hvis du ikke ble sendt til siden automatisk kan du klikke her: <a href={link}>{link}</a>
       </p>
     </>
   );

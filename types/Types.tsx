@@ -30,3 +30,8 @@ export interface Page {
   path: string;
   title: string;
 }
+
+export interface ShortLink {
+  name: string;
+  url: string;
+}
