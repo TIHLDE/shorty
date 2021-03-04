@@ -26,6 +26,8 @@ export default function SEO({
       <meta content={`https://tihlde.org/${url}`} property='og:url' />
       <meta content={image} property='og:image' />
 
+      <link rel='canonical' href={`https://tihlde.org/${url}`} />
+
       <meta name='twitter:card' content='summary_large_image' />
       <meta property='twitter:domain' content='tihlde.org' />
       <meta property='twitter:url' content={`https://tihlde.org/${url}`} />
