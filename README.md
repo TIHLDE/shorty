@@ -14,19 +14,19 @@
 <br/>
 
 <p align="CENTER">
-<a href="https://github.com/TIHLDE/shorty/blob/master/LICENSE"><img alt="License: MIT" src="https://black.readthedocs.io/en/stable/_static/license.svg"></a>
-<a href="https://github.com/TIHLDE/Kvark/commits/master" target="_blank">
-    <img src="https://img.shields.io/github/commit-activity/y/TIHLDE/shorty.svg" alt="GitHub commit activity">
+<a href="https://github.com/tihlde/shorty/blob/master/LICENSE"><img alt="License: MIT" src="https://black.readthedocs.io/en/stable/_static/license.svg"></a>
+<a href="https://github.com/tihlde/shorty/commits/master" target="_blank">
+    <img src="https://img.shields.io/github/commit-activity/y/tihlde/shorty.svg" alt="GitHub commit activity">
 </a>
-<a href="https://github.com/TIHLDE/shorty/graphs/contributors" target="_blank">
-    <img src="https://img.shields.io/github/contributors-anon/TIHLDE/shorty.svg" alt="GitHub contributors">
+<a href="https://github.com/tihlde/shorty/graphs/contributors" target="_blank">
+    <img src="https://img.shields.io/github/contributors-anon/tihlde/shorty.svg" alt="GitHub contributors">
 </a>
 </p>
 
 <br />
 
 <p align="CENTER">
-  <a href="https://vercel.com/?utm_source=shorty&utm_campaign=oss"><img alt="Vercel" src="./src/assets/icons/vercel_background.svg"></a>
+  <a href="https://vercel.com/?utm_source=shorty&utm_campaign=oss"><img alt="Vercel" src="https://github.com/TIHLDE/Kvark/raw/dev/src/assets/icons/vercel_background.svg"></a>
 </p>
 
 <br/>
