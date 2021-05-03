@@ -1,6 +1,6 @@
 import { RequestResponse } from 'types/Types';
 
-const TIHLDE_API = 'https://tihlde.org/api/v1/';
+const TIHLDE_API = 'https://api.tihlde.org/api/v1/';
 
 // eslint-disable-next-line comma-spacing
 export const IFetch = <T,>(url: string): Promise<T> => {
