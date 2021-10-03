@@ -8,7 +8,7 @@ export type SEOProps = {
 };
 
 export default function SEO({
-  description = 'Linjeforeningen for Dataingeniør, Digital infrastruktur og cybersikkerhet, Digital forretningsutvikling, Drift av datasystemer og Digital samhandling ved NTNU',
+  description = 'Linjeforeningen for Dataingeniør, Digital infrastruktur og cybersikkerhet, Digital forretningsutvikling og Digital samhandling ved NTNU',
   title = 'TIHLDE',
   url = '',
   image = 'https://tihlde.org/browser-icons/cover-image.jpg',

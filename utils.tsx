@@ -7,7 +7,11 @@ export const urlEncode = (text = '') => slugify(text, { lower: true, strict: tru
 const addLeadingZero = (number: number) => (number < 10 ? '0' + number : number);
 
 export const formatDate = (iso: string) => {
-  const date = parseISO(iso);
+  // Since this function is runned in an environment with timezone UTC, but we want it in the Norwegian timezone
+  // which is the timezone we receive from backend. To fix this we simply remove the timezone-info from the ISO-string
+  // and parse the date as if it where a UTC-date. It's hacky but it works!
+  const isoWithoutTimezone = `${iso.substr(0, 19)}Z`;
+  const date = parseISO(isoWithoutTimezone);
   return (
     getDay(date.getDay()) +
     ' ' +
