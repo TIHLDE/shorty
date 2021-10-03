@@ -1,6 +1,6 @@
 {
   "name": "shorty",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@braintree/sanitize-url": "^5.0.2",
     "date-fns": "^2.17.0",
     "next": "10.0.7",
     "react": "17.0.1",

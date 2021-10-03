@@ -1,3 +1,6 @@
+/**
+ * Adds SEO-information to the HTML-headers which creates good-looking "cards" in social media platforms like Facebook, Twitter and Slack when sharing the link.
+ */
 import Head from 'next/head';
 
 export type SEOProps = {
