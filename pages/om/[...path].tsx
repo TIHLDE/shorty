@@ -20,7 +20,7 @@ export type PagesProps = {
 export default function PagesPage({ page }: PagesProps) {
   return (
     <Redirect path={`om/${page.path}`}>
-      <SEO description='' title={page.title} image={page.image || undefined} url={`om/${page.path}`} />
+      <SEO description='' image={page.image || undefined} title={page.title} url={`om/${page.path}`} />
     </Redirect>
   );
 }

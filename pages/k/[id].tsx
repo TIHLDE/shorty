@@ -22,8 +22,8 @@ export default function JobPostPage({ jobpost }: JobPostProps) {
     <Redirect path={`karriere/${jobpost.id}/${urlEncode(jobpost.title)}/`}>
       <SEO
         description={`${jobpost.company}, ${jobpost.location}`}
-        title={jobpost.title}
         image={jobpost.image || undefined}
+        title={jobpost.title}
         url={`karriere/${jobpost.id}/${urlEncode(jobpost.title)}/`}
       />
     </Redirect>

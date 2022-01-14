@@ -20,7 +20,7 @@ export type NewsProps = {
 export default function NewsPage({ news }: NewsProps) {
   return (
     <Redirect path={`nyheter/${news.id}/${urlEncode(news.title)}/`}>
-      <SEO description={news.header} title={news.title} image={news.image || undefined} url={`nyheter/${news.id}/${urlEncode(news.title)}/`} />
+      <SEO description={news.header} image={news.image || undefined} title={news.title} url={`nyheter/${news.id}/${urlEncode(news.title)}/`} />
     </Redirect>
   );
 }

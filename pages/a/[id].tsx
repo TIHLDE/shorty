@@ -22,8 +22,8 @@ export default function EventPage({ event }: EventProps) {
     <Redirect path={`arrangementer/${event.id}/${urlEncode(event.title)}/`}>
       <SEO
         description={`${formatDate(event.start_date, { fullDayOfWeek: true, fullMonth: true })} på ${event.location}`}
-        title={event.title}
         image={event.image || undefined}
+        title={event.title}
         url={`arrangementer/${event.id}/${urlEncode(event.title)}/`}
       />
     </Redirect>
