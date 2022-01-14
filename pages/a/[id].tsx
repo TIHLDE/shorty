@@ -6,7 +6,7 @@ import API from 'fetch/api';
 import Redirect from 'components/Redirect';
 import SEO from 'components/Seo';
 import { Event } from 'types/Types';
-import { formatDate, urlEncode } from 'utils';
+import { formatDate, sentryCaptureException, urlEncode } from 'utils';
 
 // https://piccalil.li/quick-tip/disable-client-side-react-with-next-js/
 export const config = {
@@ -21,7 +21,7 @@ export default function EventPage({ event }: EventProps) {
   return (
     <Redirect path={`arrangementer/${event.id}/${urlEncode(event.title)}/`}>
       <SEO
-        description={`${formatDate(event.start_date)} på ${event.location}`}
+        description={`${formatDate(event.start_date, { fullDayOfWeek: true, fullMonth: true })} på ${event.location}`}
         title={event.title}
         image={event.image || undefined}
         url={`arrangementer/${event.id}/${urlEncode(event.title)}/`}
@@ -40,6 +40,9 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     const data: EventProps = { event };
     return { props: data };
   } catch (e) {
+    if (e instanceof Error) {
+      await sentryCaptureException(e);
+    }
     return {
       notFound: true,
     };

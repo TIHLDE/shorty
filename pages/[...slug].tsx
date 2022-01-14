@@ -6,6 +6,7 @@ import { GetServerSideProps } from 'next';
 import { sanitizeUrl } from '@braintree/sanitize-url';
 import API from 'fetch/api';
 import Index from 'pages/index';
+import { sentryCaptureException } from 'utils';
 
 // https://piccalil.li/quick-tip/disable-client-side-react-with-next-js/
 export const config = {
@@ -27,6 +28,9 @@ export const getServerSideProps: GetServerSideProps = async ({ res, query }) => 
     }
     return { props: {} };
   } catch (e) {
+    if (e instanceof Error) {
+      await sentryCaptureException(e);
+    }
     return {
       notFound: true,
     };

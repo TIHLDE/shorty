@@ -6,6 +6,7 @@ import API from 'fetch/api';
 import SEO from 'components/Seo';
 import { Page } from 'types/Types';
 import Redirect from 'components/Redirect';
+import { sentryCaptureException } from 'utils';
 
 // https://piccalil.li/quick-tip/disable-client-side-react-with-next-js/
 export const config = {
@@ -30,6 +31,9 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     const data: PagesProps = { page };
     return { props: data };
   } catch (e) {
+    if (e instanceof Error) {
+      await sentryCaptureException(e);
+    }
     return {
       notFound: true,
     };
