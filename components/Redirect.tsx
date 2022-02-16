@@ -5,6 +5,7 @@
  */
 import { ReactNode } from 'react';
 import Head from 'next/head';
+import { BASE_URL } from 'URLS';
 
 export type RedirectProps = {
   children?: ReactNode;
@@ -12,7 +13,7 @@ export type RedirectProps = {
 };
 
 export default function Redirect({ children, path = '' }: RedirectProps) {
-  const link = `https://tihlde.org/${path}`;
+  const link = `${BASE_URL}${path}`;
   return (
     <>
       <Head>

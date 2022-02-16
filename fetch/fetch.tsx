@@ -1,10 +1,9 @@
 import { RequestResponse } from 'types/Types';
-
-const TIHLDE_API = 'https://api.tihlde.org/';
+import { API_URL } from 'URLS';
 
 // eslint-disable-next-line comma-spacing
 export const IFetch = <T,>(url: string): Promise<T> => {
-  const urlAddress = TIHLDE_API + url;
+  const urlAddress = API_URL + url;
   const headers = new Headers();
   headers.append('Content-Type', 'application/json');
 
