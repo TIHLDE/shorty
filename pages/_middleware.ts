@@ -8,7 +8,8 @@ import { sentryCaptureException } from 'utils';
 export const middleware = async ({ ua, page }: NextRequest) => {
   try {
     const isBot = ua.isBot;
-    if (isBot) {
+    console.log(ua);
+    if (isBot || true) {
       return NextResponse.next();
     }
 

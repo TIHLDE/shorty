@@ -1,5 +1,5 @@
 /**
- * Shows SEO-info about the page in pages with the given `path` and redirects the user to the page at TIHLDE.org
+ * Shows SEO-info about the given page with the given `path` and redirects the user to the page at TIHLDE.org
  */
 import { GetServerSideProps } from 'next';
 import { sanitizeUrl } from '@braintree/sanitize-url';
@@ -36,12 +36,15 @@ export const getServerSideProps: GetServerSideProps<ShortyProps> = async ({ res,
       return { props: {} };
     }
     const base = path[0];
+    console.log(base);
     if (base === 'a') {
       const id = path[1];
+      console.log(id);
       if (Number.isNaN(id)) {
         throw new Error('Id is not a number');
       }
       const event = await API.getEvent(id);
+      console.log(event);
       return {
         props: {
           url: `${URLS.events}${event.id}/${urlEncode(event.title)}/`,
