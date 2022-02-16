@@ -9,7 +9,7 @@ export const middleware = async ({ ua, page }: NextRequest) => {
   try {
     const isBot = ua.isBot;
     console.log(ua);
-    if (isBot || true) {
+    if (isBot) {
       return NextResponse.next();
     }
 
