@@ -8,9 +8,9 @@ export const WIKI_ENDPOINT = 'pages';
 export const SHORT_LINKS_ENDPOINT = 'short-links';
 
 export default {
-  getEvent: (eventId: number) => IFetch<Event>(`${EVENTS_ENDPOINT}/${String(eventId)}/`),
-  getJobPost: (id: number) => IFetch<JobPost>(`${JOBPOSTS_ENDPOINT}/${String(id)}/`),
-  getNewsItem: (id: number) => IFetch<News>(`${NEWS_ENDPOINT}/${String(id)}/`),
+  getEvent: (eventId: string) => IFetch<Event>(`${EVENTS_ENDPOINT}/${eventId}/`),
+  getJobPost: (id: string) => IFetch<JobPost>(`${JOBPOSTS_ENDPOINT}/${id}/`),
+  getNewsItem: (id: string) => IFetch<News>(`${NEWS_ENDPOINT}/${id}/`),
   getPage: (path: string) => IFetch<Page>(`${WIKI_ENDPOINT}/${path}`),
   getShortLink: (slug: string) => IFetch<ShortLink>(`${SHORT_LINKS_ENDPOINT}/${slug}/`),
 };

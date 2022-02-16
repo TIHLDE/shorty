@@ -35,14 +35,13 @@ export const getServerSideProps: GetServerSideProps<ShortyProps> = async ({ res,
     if (!path || !Array.isArray(path)) {
       return { props: {} };
     }
-    console.log(path);
     const base = path[0];
     if (base === 'a') {
       const id = path[1];
       if (Number.isNaN(id)) {
         throw new Error('Id is not a number');
       }
-      const event = await API.getEvent(Number(id));
+      const event = await API.getEvent(id);
       return {
         props: {
           url: `${URLS.events}${event.id}/${urlEncode(event.title)}/`,
@@ -57,7 +56,7 @@ export const getServerSideProps: GetServerSideProps<ShortyProps> = async ({ res,
       if (Number.isNaN(id)) {
         throw new Error('Id is not a number');
       }
-      const jobpost = await API.getJobPost(Number(id));
+      const jobpost = await API.getJobPost(id);
       return {
         props: {
           url: `${URLS.jobposts}${jobpost.id}/${urlEncode(jobpost.title)}/`,
@@ -72,7 +71,7 @@ export const getServerSideProps: GetServerSideProps<ShortyProps> = async ({ res,
       if (Number.isNaN(id)) {
         throw new Error('Id is not a number');
       }
-      const news = await API.getNewsItem(Number(id));
+      const news = await API.getNewsItem(id);
       return {
         props: {
           url: `${URLS.news}${news.id}/${urlEncode(news.title)}/`,
@@ -83,7 +82,7 @@ export const getServerSideProps: GetServerSideProps<ShortyProps> = async ({ res,
       };
     }
     if (base === 'om' || base === 'wiki') {
-      const page = await API.getPage(path.length === 1 ? '' : path.slice(1).join('/'));
+      const page = await API.getPage(path.slice(1).join('/'));
       return {
         props: {
           url: `${URLS.wiki}${page.path}${path.length === 1 ? '/' : ''}`,
