@@ -6,8 +6,8 @@ import { sanitizeUrl } from '@braintree/sanitize-url';
 import API from 'fetch/api';
 import SEO from 'components/Seo';
 import Redirect from 'components/Redirect';
-import { formatDate, sentryCaptureException, urlEncode } from 'utils';
-import URLS from 'URLS';
+import { sentryCaptureException } from 'utils';
+import { routes } from 'routes';
 
 // https://piccalil.li/quick-tip/disable-client-side-react-with-next-js/
 export const config = {
@@ -36,64 +36,11 @@ export const getServerSideProps: GetServerSideProps<ShortyProps> = async ({ res,
       return { props: {} };
     }
     const base = path[0];
-    console.log(base);
-    if (base === 'a') {
-      const id = path[1];
-      console.log(id);
-      if (Number.isNaN(id)) {
-        throw new Error('Id is not a number');
-      }
-      const event = await API.getEvent(id);
-      console.log(event);
-      return {
-        props: {
-          url: `${URLS.events}${event.id}/${urlEncode(event.title)}/`,
-          title: event.title,
-          image: event.image,
-          description: `${formatDate(event.start_date, { fullDayOfWeek: true, fullMonth: true })} på ${event.location}`,
-        },
-      };
-    }
-    if (base === 'k') {
-      const id = path[1];
-      if (Number.isNaN(id)) {
-        throw new Error('Id is not a number');
-      }
-      const jobpost = await API.getJobPost(id);
-      return {
-        props: {
-          url: `${URLS.jobposts}${jobpost.id}/${urlEncode(jobpost.title)}/`,
-          title: jobpost.title,
-          image: jobpost.image,
-          description: `${jobpost.company}, ${jobpost.location}`,
-        },
-      };
-    }
-    if (base === 'n') {
-      const id = path[1];
-      if (Number.isNaN(id)) {
-        throw new Error('Id is not a number');
-      }
-      const news = await API.getNewsItem(id);
-      return {
-        props: {
-          url: `${URLS.news}${news.id}/${urlEncode(news.title)}/`,
-          title: news.title,
-          image: news.image,
-          description: news.header,
-        },
-      };
-    }
-    if (base === 'om' || base === 'wiki') {
-      const page = await API.getPage(path.slice(1).join('/'));
-      return {
-        props: {
-          url: `${URLS.wiki}${page.path}${path.length === 1 ? '/' : ''}`,
-          title: page.title,
-          image: page.image,
-          description: `Wiki-side for ${page.title}`,
-        },
-      };
+    const rest = path.slice(1);
+    const route = routes.find((route) => route.id === base);
+    if (route) {
+      const props = await route.getSeo(rest);
+      return { props };
     }
     const shortLink = await API.getShortLink(base);
     if (shortLink && res) {
