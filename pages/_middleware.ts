@@ -12,33 +12,34 @@ export const middleware = async ({ ua, page }: NextRequest) => {
       return NextResponse.next();
     }
 
-    const path = (page.params.path || []) as unknown as Array<string>;
-    console.log('path');
+    const path = (page.params.path || []) as unknown as Array<string> | string;
+    const pathArray = Array.isArray(path) ? path : path.split('/');
+    console.log('pathArray');
     console.log(page);
-    console.log(path);
-    const base = path[0];
+    console.log(pathArray);
+    const base = pathArray[0];
     console.log(base);
-    console.log(path[1]);
+    console.log(pathArray[1]);
     if (base) {
       console.log('base');
       if (base === 'a') {
         console.log('a');
-        return NextResponse.redirect(`${BASE_URL}${URLS.events}${path[1]}/`);
+        return NextResponse.redirect(`${BASE_URL}${URLS.events}${pathArray[1]}/`);
       }
       if (base === 'k') {
         console.log('k');
-        return NextResponse.redirect(`${BASE_URL}${URLS.jobposts}${path[1]}/`);
+        return NextResponse.redirect(`${BASE_URL}${URLS.jobposts}${pathArray[1]}/`);
       }
       if (base === 'n') {
         console.log('n');
-        return NextResponse.redirect(`${BASE_URL}${URLS.news}${path[1]}/`);
+        return NextResponse.redirect(`${BASE_URL}${URLS.news}${pathArray[1]}/`);
       }
       if (base === 'om' || base === 'wiki') {
         console.log('wiki');
-        return NextResponse.redirect(`${BASE_URL}${URLS.wiki}${path.slice(1).join('/')}/`);
+        return NextResponse.redirect(`${BASE_URL}${URLS.wiki}${pathArray.slice(1).join('/')}/`);
       }
 
-      const shortLink = await API.getShortLink(path.join('/'));
+      const shortLink = await API.getShortLink(pathArray.join('/'));
       if (shortLink) {
         console.log('short');
         return NextResponse.redirect(sanitizeUrl(shortLink.url));
