@@ -8,12 +8,13 @@ import { sentryCaptureException } from 'utils';
 export const middleware = async ({ ua, page }: NextRequest) => {
   try {
     const isBot = ua.isBot;
-    console.log(ua);
     if (isBot) {
       return NextResponse.next();
     }
 
     const path = (page.params.path || []) as unknown as Array<string>;
+    console.log('path');
+    console.log(page);
     console.log(path);
     const base = path[0];
     console.log(base);
