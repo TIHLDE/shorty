@@ -1,10 +1,11 @@
 import type { AppProps } from 'next/app';
-import { Analytics } from '@vercel/analytics/react';
+import { inject } from '@vercel/analytics';
+
+inject(); // injects Vercel Analytics
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
   <>
     <Component {...pageProps} />
-    <Analytics />
   </>
 );
 
