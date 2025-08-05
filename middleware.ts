@@ -2,21 +2,23 @@
  * Redirect user immediately if not bot, else show seo-info
  */
 import type { NextRequest } from 'next/server';
-import { NextResponse } from 'next/server';
+import { NextResponse, userAgent } from 'next/server';
 import { BASE_URL } from 'URLS';
 import API from 'fetch/api';
 import { sanitizeUrl } from '@braintree/sanitize-url';
 import { sentryCaptureException } from 'utils';
 import { routes } from 'routes';
 
-export const middleware = async ({ ua, page }: NextRequest) => {
+export const middleware = async (req: NextRequest) => {
+  const ua = userAgent(req);
+  const page = req.nextUrl;
   try {
     const isBot = ua.isBot;
     if (isBot) {
       return NextResponse.next();
     }
 
-    const path = (page.params.path || []) as unknown as Array<string> | string;
+    const path = (page.pathname.split('/').filter(Boolean) || []) as unknown as Array<string> | string;
     const pathArray = Array.isArray(path) ? path : path.split('/');
     const base = pathArray[0];
     const rest = pathArray.slice(1);
@@ -25,8 +27,8 @@ export const middleware = async ({ ua, page }: NextRequest) => {
     if (route) {
       return NextResponse.redirect(route.getQuick(rest));
     }
-
     const shortLink = await API.getShortLink(pathArray.join('/'));
+
     if (shortLink) {
       return NextResponse.redirect(sanitizeUrl(shortLink.url));
     }
